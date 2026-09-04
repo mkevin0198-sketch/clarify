@@ -46,7 +46,7 @@
 
     @media(max-width:1000px){.route-card{width:350px}.metrics{grid-template-columns:1fr}.content-grid,.settings-grid{grid-template-columns:1fr}}@media(min-width:761px) and (max-width:1000px){.map-search{width:calc(100% - 410px)}}@media(max-width:760px){.app{display:block}.sidebar{display:none}.workspace{padding:18px 14px 95px}.topbar{align-items:flex-start}h1{font-size:30px}.top-actions{display:none}.map-card{height:68vh;min-height:520px;border-radius:22px}.map-search{left:12px;top:12px;width:calc(100% - 24px)}.route-card{left:0;right:0;top:auto;bottom:0;width:auto;max-height:62%;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:22px 14px calc(10px + env(safe-area-inset-bottom));border-radius:22px 22px 0 0}.route-card-handle{display:flex;align-items:center;justify-content:center;gap:2px;position:absolute;top:0;left:0;right:0;height:28px;border:0;background:transparent;padding:0;z-index:4}.route-card-handle-bar{width:42px;height:4px;border-radius:999px;background:#c9d2ce}.route-card-handle-chevron{font-size:11px;line-height:1;color:#9aa8a3;transform:translateY(1px);transition:transform .2s ease}.route-card[data-sheet-state="normal"] .route-card-handle-chevron{transform:rotate(90deg)}.route-card[data-sheet-state="expanded"] .route-card-handle-chevron{transform:rotate(180deg) translateY(-1px)}.route-card.expanded{max-height:min(88dvh,calc(100dvh - 60px))!important}.route-card.peek{max-height:min(158px,28dvh)!important}.route-card.peek .route-stops,.route-card.peek .route-choices,.route-card.peek .route-selected-detail,.route-card.peek .route-status,.route-card.peek .route-sub{display:none}.route-card.peek .route-card-scroll{padding-top:8px;padding-bottom:0;flex:0 0 auto}.route-card.peek .route-title{margin-bottom:0}.route-title{padding-right:4px}.route-sub{margin-bottom:8px}.route-toll-details{max-height:none;overflow:visible}.route-actions{position:sticky;bottom:calc(-10px - env(safe-area-inset-bottom));z-index:2;background:linear-gradient(to bottom,rgba(255,255,255,0),#fff 14px);padding:20px 0 calc(2px + env(safe-area-inset-bottom));margin-top:0}.map-period,.token-button{display:none}.map-pick-hint{top:105px;bottom:auto;max-width:calc(100% - 28px);overflow:hidden;text-overflow:ellipsis}.metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;overflow:visible;margin:12px 0}.metric{min-width:0;min-height:112px;padding:13px 11px;border-radius:16px}.metric span{font-size:11px}.metric strong{font-size:24px;margin:10px 0 7px}.metric small{font-size:10px;line-height:1.3}.drive-banner{padding:calc(12px + env(safe-area-inset-top)) 12px 12px;gap:10px}.maneuver{gap:10px}.turn-icon{font-size:29px}.maneuver strong{font-size:17px}.maneuver small{font-size:12px}#centerDrive{width:44px;min-width:44px;height:44px;padding:0;font-size:0}#centerDrive::before{content:"◎";font-size:21px}.drive-bottom{padding:12px 12px calc(12px + env(safe-area-inset-bottom))}.drive-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}.drive-stats div{background:#f3f6f3;border-radius:12px;padding:8px}.drive-stats strong{font-size:16px}.drive-actions .btn{width:100%;min-width:0}.drive-toll-alert{max-width:calc(100% - 24px);width:max-content;text-align:center}}
 
-.toll-map-control{position:absolute;right:92px;bottom:18px;z-index:4;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:8px 11px;box-shadow:0 8px 22px rgba(0,0,0,.13);font-size:11px;font-weight:850;color:var(--ink)}.toll-map-control button{border:0;background:none;color:#176650;font-weight:900;padding:0}.toll-mini-icon{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--danger);color:#fff;font-size:11px;font-weight:950}.toll-marker{min-width:42px;height:27px;padding:0 8px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:var(--danger);color:#fff;border:2px solid #fff;box-shadow:0 3px 10px rgba(101,28,18,.28);font-size:11px;font-weight:950;white-space:nowrap}.toll-marker.route-toll{background:#c83f2f;box-shadow:0 0 0 4px rgba(239,91,73,.18),0 5px 13px rgba(101,28,18,.35)}.toll-popup{min-width:205px;color:#173b35}.toll-popup strong{font-size:13px;display:block;margin-bottom:4px}.toll-popup small{display:block;color:#657773;line-height:1.4}.toll-popup .toll-popup-price{font-size:20px;font-weight:950;color:#d84a38;margin:8px 0 3px}.route-toll-details{margin-top:9px;border-top:1px solid var(--line);padding-top:8px;max-height:148px;overflow:auto;display:grid;gap:6px}.route-toll-item{display:grid;grid-template-columns:1fr auto;gap:10px;font-size:11px;background:#f7f8f5;padding:7px 8px;border-radius:9px}.route-toll-item strong{font-size:11px}.route-toll-item span{color:#687875}.toll-badge{display:inline-flex;align-items:center;gap:5px;background:#fff0ed;color:#9a382d;padding:4px 7px;border-radius:999px;font-size:10px;font-weight:900}.drive-toll-alert{position:absolute;left:50%;top:86px;transform:translateX(-50%);z-index:105;background:#fff;color:var(--ink);padding:10px 14px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.18);font-size:12px;font-weight:900;pointer-events:none}@media(max-width:760px){.toll-map-control{display:none}}
+.toll-map-control{position:absolute;right:92px;bottom:18px;z-index:4;display:flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:8px 11px;box-shadow:0 8px 22px rgba(0,0,0,.13);font-size:11px;font-weight:850;color:var(--ink)}.toll-map-control button{border:0;background:none;color:#176650;font-weight:900;padding:0}.toll-mini-icon{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--danger);color:#fff;font-size:11px;font-weight:950}.toll-marker{min-width:42px;height:26px;padding:0 8px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:#d84a38;color:#fff;border:1.5px solid #fff;box-shadow:0 2px 7px rgba(101,28,18,.2);font-size:11px;font-weight:950;white-space:nowrap}.toll-marker.route-toll{background:#c83f2f;box-shadow:0 0 0 3px rgba(239,91,73,.14),0 3px 9px rgba(101,28,18,.24)}.toll-popup{min-width:205px;color:#173b35}.toll-popup strong{font-size:13px;display:block;margin-bottom:4px}.toll-popup small{display:block;color:#657773;line-height:1.4}.toll-popup .toll-popup-price{font-size:20px;font-weight:950;color:#d84a38;margin:8px 0 3px}.route-toll-details{margin-top:9px;border-top:1px solid var(--line);padding-top:8px;max-height:148px;overflow:auto;display:grid;gap:6px}.route-toll-item{display:grid;grid-template-columns:1fr auto;gap:10px;font-size:11px;background:#f7f8f5;padding:7px 8px;border-radius:9px}.route-toll-item strong{font-size:11px}.route-toll-item span{color:#687875}.toll-badge{display:inline-flex;align-items:center;gap:5px;background:#fff0ed;color:#9a382d;padding:4px 7px;border-radius:999px;font-size:10px;font-weight:900}.drive-toll-alert{position:absolute;left:50%;top:86px;transform:translateX(-50%);z-index:105;background:#fff;color:var(--ink);padding:10px 14px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.18);font-size:12px;font-weight:900;pointer-events:none}@media(max-width:760px){.toll-map-control{display:none}}
 .live-map-legend{position:absolute;left:18px;bottom:62px;z-index:4;display:flex;flex-wrap:wrap;align-items:center;gap:7px;max-width:calc(100% - 36px);padding:7px 10px;border:1px solid rgba(9,43,39,.08);border-radius:12px;background:rgba(255,255,255,.96);box-shadow:0 8px 22px rgba(4,35,29,.14);color:var(--ink);font-size:10px;font-weight:900}.live-map-legend span{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}.traffic-live-dot,.camera-live-dot,.rrvv-live-dot,.fuel-live-dot{width:9px;height:9px;border-radius:50%}.traffic-live-dot{background:#ef5b49;box-shadow:0 0 0 3px rgba(239,91,73,.14)}.camera-live-dot{display:grid!important;place-items:center;width:16px;height:16px;background:var(--green);color:#fff;font-size:8px}.rrvv-live-dot{display:inline-block;background:#296bc1}.fuel-live-dot{display:grid!important;place-items:center;width:17px;height:17px;border-radius:6px;background:#f59e0b;color:#fff;font-size:9px;font-style:normal}.camera-popup,.fuel-popup{min-width:220px;color:#173b35}.camera-popup strong,.camera-popup span,.camera-popup small,.fuel-popup strong,.fuel-popup span,.fuel-popup small{display:block}.camera-popup strong,.fuel-popup strong{font-size:13px}.camera-popup span,.fuel-popup span{margin-top:4px;font-size:11px}.camera-popup small,.fuel-popup small{margin-top:7px;color:#657773;line-height:1.35}.camera-popup em{display:inline-flex;margin-top:7px;padding:4px 7px;border-radius:999px;background:#fff0ed;color:#9a382d;font-size:9px;font-style:normal;font-weight:900}.camera-popup a,.fuel-popup a{display:inline-block;margin-top:8px;color:#0b654f;font-size:10px;font-weight:900}.camera-popup a+a{margin-left:10px}.fuel-price-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:9px!important}.fuel-price-list b{display:flex;justify-content:space-between;gap:8px;padding:7px 8px;border-radius:9px;background:#f2f6f3;font-size:11px}.fuel-price-list b i{color:#a45405;font-style:normal}.camera-category-key{display:flex;align-items:center;gap:6px;margin:8px 2px 0;color:var(--muted);font-size:9px}.layer-note{display:block;margin:7px 2px 1px;color:var(--muted);font-size:9px;line-height:1.35}.drive-sheet .map-layer-toggle{justify-content:flex-start}.map-layer-toggle span{display:grid;gap:1px}.map-layer-toggle small{margin-left:0!important}.map-layer-toggle b{font-size:12px}.traffic-scale{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:9px 2px 0;color:var(--muted);font-size:9px}.traffic-scale span{display:inline-flex;grid-template-columns:none;align-items:center;gap:4px}.traffic-scale i{width:15px;height:5px;border-radius:9px}.traffic-scale .traffic-moderate{background:#f4cc45}.traffic-scale .traffic-heavy{background:#f28e2b}.traffic-scale .traffic-severe{background:#d73027}@media(max-width:760px){.live-map-legend{left:10px;bottom:10px;max-width:calc(100% - 20px);padding:6px 8px}.live-map-legend span{font-size:9px}}
 .route-choices{display:grid;gap:8px;margin:10px 0}.route-choice{border:1px solid var(--line);border-radius:15px;background:#f8faf7;color:var(--ink);padding:10px 11px;text-align:left;min-width:0;min-height:96px;transition:.18s ease}.route-choice:hover{border-color:#9ab9ad;transform:translateY(-1px)}.route-choice.active{background:#e9f5ee;border-color:#0b654f;box-shadow:0 0 0 2px rgba(11,101,79,.10)}.route-choice-head{display:flex;justify-content:space-between;gap:8px;align-items:center}.route-badge{display:inline-flex;background:#e4ece8;color:#315c52;border-radius:999px;padding:4px 7px;font-size:9px;font-weight:950;letter-spacing:.04em}.route-choice.active .route-badge{background:#0b654f;color:#fff}.route-mode{font-size:9px;color:#8b5229;font-weight:900}.route-choice-metrics{display:grid;grid-template-columns:1.1fr .8fr 1fr;gap:8px;margin-top:9px}.route-choice-metrics span{display:block;color:var(--muted);font-size:9px}.route-choice-metrics strong{display:block;font-size:13px;margin-top:2px;white-space:nowrap}.route-choice-footer{display:flex;justify-content:space-between;gap:8px;margin-top:8px;padding-top:7px;border-top:1px solid #e2e8e4;font-size:10px;color:#60716d}.route-choice-footer strong{font-size:12px;color:var(--ink)}.route-delta{color:#276d5a;font-weight:850}.route-choice.active .route-delta{color:#0b654f}
 @media(max-width:760px){.route-toll-details{max-height:none;overflow:visible}.route-choices{display:grid;overflow:visible;margin:8px 0}.route-choice{width:100%;min-height:92px}.route-grid{margin-bottom:10px}.cost-list{margin:9px 0}.suggestions{max-height:min(330px,46vh)}}
@@ -192,7 +192,7 @@ html.app-dark .eyebrow,html.app-dark .link-btn,html.app-dark .fuel-entry-copy sm
 html.app-dark .bottom-nav{background:rgba(9,25,20,.97);border-color:var(--line);box-shadow:0 -8px 28px rgba(0,0,0,.32)}
 html.app-dark .bottom-nav-item{color:#9eb3ab}html.app-dark .bottom-nav-item.active{background:#19342b;color:#d8f8ea}
 html.app-dark .map-light-toggle,html.app-dark .map-3d-toggle,html.app-dark .map-fab,html.app-dark .token-button,html.app-dark .map-period,html.app-dark .toll-map-control,html.app-dark .live-map-legend{background:rgba(15,36,29,.96);color:var(--ink);border-color:var(--line)}
-.toll-mini-icon{width:22px;height:22px;border-radius:8px;font-size:8px;letter-spacing:-.04em}.toll-marker{min-width:0;height:32px;padding:3px 8px 3px 4px;border-radius:11px;gap:5px;background:rgba(255,255,255,.98);color:#a83025;border-width:1.5px;box-shadow:0 4px 13px rgba(82,24,18,.3)}.toll-marker-icon{width:24px;height:24px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(145deg,#ef6655,#c9372a);color:#fff;font-size:7px;font-weight:1000;letter-spacing:-.03em}.toll-marker-price{line-height:1}.toll-marker.route-toll{background:rgba(255,255,255,.98);box-shadow:0 0 0 4px rgba(239,91,73,.2),0 5px 14px rgba(101,28,18,.34)}.toll-marker.route-toll .toll-marker-icon{background:linear-gradient(145deg,#ff765f,#b92e22)}.toll-marker.compact{min-width:0;width:29px;height:29px;padding:3px;border-radius:10px}.toll-marker.compact .toll-marker-icon{width:21px;height:21px;border-radius:7px}
+.toll-mini-icon{width:22px;height:22px;border-radius:8px;font-size:8px;letter-spacing:-.04em}.toll-marker{min-width:0;height:30px;padding:3px 9px 3px 4px;border-radius:10px;gap:5px;background:rgba(255,255,255,.98);color:#9a382d;border-width:1px;box-shadow:0 2px 8px rgba(82,24,18,.18)}.toll-marker-icon{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:#d84a38;color:#fff;font-size:7px;font-weight:1000;letter-spacing:-.03em}.toll-marker-price{line-height:1}.toll-marker.route-toll{background:rgba(255,255,255,.98);box-shadow:0 0 0 3px rgba(239,91,73,.16),0 3px 10px rgba(101,28,18,.24)}.toll-marker.route-toll .toll-marker-icon{background:#c83f2f}.toll-marker.compact{min-width:0;width:27px;height:27px;padding:3px;border-radius:9px}.toll-marker.compact .toll-marker-icon{width:19px;height:19px;border-radius:6px}
 .drive-bottom{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto;column-gap:0;row-gap:0;padding:15px max(9px,env(safe-area-inset-right)) calc(5px + env(safe-area-inset-bottom)) max(9px,env(safe-area-inset-left));border-radius:20px 20px 0 0;overflow:visible}.drive-live-traffic{position:absolute;left:50%;top:0;z-index:2;transform:translate(-50%,-55%);margin:0;padding:4px 9px;background:rgba(250,252,250,.97);border:1px solid rgba(9,43,39,.08);box-shadow:0 4px 12px rgba(4,35,29,.09);font-size:9px}.drive-guidance-stats,.drive-bottom-row{display:contents}.drive-guidance-stats>div,.drive-cost-row{position:relative;grid-row:1;min-width:0;min-height:34px;padding:2px 5px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:transparent;border:0;border-radius:0;margin:0;color:var(--nav-ink)}.drive-guidance-stats>div:nth-child(1){grid-column:1}.drive-guidance-stats>div:nth-child(2){grid-column:2}.drive-guidance-stats>div:nth-child(3){grid-column:3}.drive-cost-row{grid-column:4;width:auto;max-width:none}.drive-guidance-stats>div:not(:last-child)::after,.drive-cost-row::before{content:"";position:absolute;right:0;top:7px;bottom:7px;width:1px;background:rgba(9,43,39,.1)}.drive-cost-row::before{left:0;right:auto}.drive-guidance-stats strong,.drive-cost-row strong{order:0;max-width:100%;font-size:18px;line-height:1.05;letter-spacing:-.025em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--nav-ink)}.drive-guidance-stats span,.drive-cost-row span{order:1;margin-top:3px;font-size:8px;line-height:1;color:var(--nav-muted);font-weight:850;letter-spacing:.07em;text-transform:uppercase}.drive-cost-row span small{font:inherit;color:inherit}.drive-cost-row span em{display:none}.drive-finish-button,.drive-exit-button{grid-row:2;min-width:0;min-height:40px;margin-top:7px;border-radius:12px;font-size:12px}.drive-finish-button{grid-column:1/3;margin-right:4px}.drive-exit-button{grid-column:3/5;margin-left:4px}.drive-cost-sheet .drive-cost-detail>div{min-height:44px}.drive-cost-sheet .drive-cost-total{margin-top:2px}.drive-mode.is-simulating .drive-bottom{padding-bottom:calc(5px + env(safe-area-inset-bottom))}@media(max-width:360px){.drive-bottom{padding-left:6px;padding-right:6px}.drive-guidance-stats strong,.drive-cost-row strong{font-size:16px}.drive-guidance-stats span,.drive-cost-row span{font-size:7px}.drive-finish-button,.drive-exit-button{font-size:11px}}
 .drive-proximity-stack{position:absolute;z-index:107;left:max(10px,env(safe-area-inset-left));bottom:calc(var(--drive-bottom-clearance) + 90px);display:grid;gap:7px;width:max-content;max-width:min(190px,calc(100% - 88px));pointer-events:none}.drive-proximity-stack>.drive-camera-alert,.drive-proximity-stack>.drive-toll-alert,.drive-proximity-stack>.drive-fuel-alert{position:static!important;inset:auto!important;transform:none!important;width:max-content!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:0!important;border:0!important;border-radius:999px!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;animation:nav-card-in .18s ease both}.drive-proximity-stack>.drive-toll-alert{display:block;pointer-events:auto}.drive-proximity-chip{display:flex;align-items:center;gap:8px;min-width:96px;max-width:190px;height:36px;padding:4px 12px 4px 5px;border:1px solid rgba(9,43,39,.08);border-radius:999px;background:rgba(255,255,255,.97);box-shadow:0 5px 16px rgba(4,35,29,.18);color:#113b34;white-space:nowrap}.drive-proximity-chip strong{display:block!important;min-width:0;margin:0!important;font-size:12px!important;line-height:1!important;color:inherit!important;overflow:hidden;text-overflow:ellipsis}.drive-proximity-icon{position:relative;flex:0 0 27px;width:27px;height:27px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:9px;font-style:normal;font-weight:1000;line-height:1}.drive-proximity-icon.camera{background:#17211f}.drive-proximity-icon.camera::before{content:"";width:13px;height:9px;border:2px solid #fff;border-radius:2px}.drive-proximity-icon.camera::after{content:"";position:absolute;width:4px;height:4px;border:1px solid #fff;border-radius:50%}.drive-proximity-icon.tag{background:#df342f;font-size:8px}.drive-proximity-icon.fuel{background:#1769e0;font-size:14px}.drive-proximity-chip .drive-proximity-separator{margin:0 -3px;color:#78908a;font-size:10px}.drive-proximity-chip .drive-proximity-price{font-size:12px!important;color:#0a5c4a!important}.drive-proximity-chip-button{appearance:none;text-align:left;font:inherit;cursor:pointer}.drive-proximity-chip-button:focus-visible{outline:3px solid rgba(23,105,224,.35);outline-offset:2px}html.app-dark .drive-mode.navigation-dark .drive-proximity-chip{background:var(--nav-control);color:var(--nav-ink);border-color:#365048;box-shadow:0 5px 18px rgba(0,0,0,.3)}@media(max-width:390px){.drive-proximity-stack{bottom:calc(var(--drive-bottom-clearance) + 82px);gap:6px}.drive-proximity-chip{height:34px;min-width:90px;padding-right:10px}.drive-proximity-icon{flex-basis:25px;width:25px;height:25px}.drive-proximity-chip strong{font-size:11px!important}}
 .drive-proximity-stack{bottom:calc(var(--drive-bottom-clearance) + 152px)}.drive-guidance-stats>div:nth-child(3) strong{font-size:14px;letter-spacing:-.04em}@media(max-width:760px){.route-actions{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px;padding-bottom:10px}#startTrip{grid-column:1/-1}#cancelRoute,#testGpsRoute{display:block!important;width:100%;min-width:0;min-height:42px;padding-inline:8px}.route-card{position:fixed;z-index:89;top:auto;left:max(10px,env(safe-area-inset-left));right:max(10px,env(safe-area-inset-right));bottom:calc(var(--bottom-nav-height) + env(safe-area-inset-bottom) + 8px);width:auto;max-height:min(68dvh,calc(100dvh - var(--bottom-nav-height) - 96px - env(safe-area-inset-bottom)));border-radius:24px}}@media(max-width:390px){.drive-proximity-stack{bottom:calc(var(--drive-bottom-clearance) + 142px)}}@media(max-height:700px) and (max-width:760px){.drive-proximity-stack{gap:4px}.drive-proximity-chip{height:31px}.drive-proximity-icon{flex-basis:23px;width:23px;height:23px}}
@@ -815,6 +815,16 @@ const RouteDistanceCalculator=(()=>{
 })();
 const SpeedLimitResolver=(()=>{
   const MAX_NEARBY_LIMIT_DISTANCE_M=160,MAX_MATCHING_GAP_M=800;
+  // Cuando OSM no trae el límite señalizado del tramo (frecuente en autopistas
+  // y rutas interurbanas chilenas), se recurre al límite legal por defecto
+  // según el tipo de vía (Ley de Tránsito, art. 149): autopista/doble
+  // calzada 120 km/h, otras rutas o caminos interurbanos 100 km/h. Solo se
+  // aplica con una señal confiable de clasificación (el "classes" de Mapbox,
+  // o el nombre de la vía tipo "Autopista ..." / "Ruta 5" / "Ruta 68") —
+  // nunca para una calle urbana común, donde adivinar entre 50/60/80 podría
+  // mostrar un límite equivocado.
+  const LEGAL_MOTORWAY_KPH=120,LEGAL_HIGHWAY_KPH=100;
+  const HIGHWAY_NAME_PATTERN=/\b(autopista|autovía|ruta\s*[a-z]?-?\s*\d+)\b/i;
   function normalize(maxspeed){
     if(!maxspeed||maxspeed.unknown||maxspeed.none)return null;
     const speed=Number(maxspeed.speed);
@@ -822,10 +832,24 @@ const SpeedLimitResolver=(()=>{
     const unit=String(maxspeed.unit||"km/h").toLowerCase();
     return Math.round(unit==="mph"?speed*1.609344:speed);
   }
+  function legalDefaultForStep(step){
+    const classes=step?.intersections?.[0]?.classes||[];
+    if(classes.includes("motorway")||classes.includes("motorway_link"))return LEGAL_MOTORWAY_KPH;
+    if(HIGHWAY_NAME_PATTERN.test(String(step?.name||"")))return LEGAL_HIGHWAY_KPH;
+    return null;
+  }
   function buildProfile(route,index=RouteDistanceCalculator.buildIndex(route)){
     const annotations=(route?.legs||[]).flatMap(leg=>leg?.annotation?.maxspeed||[]),segments=[],count=Math.min(annotations.length,Math.max(0,(index?.coords?.length||0)-1));
     for(let i=0;i<count;i++)segments.push({start:index.cumulative[i],end:index.cumulative[i+1],kph:normalize(annotations[i])});
-    return{route,index,segments};
+    const steps=(route?.legs||[]).flatMap(leg=>leg?.steps||[]),classSegments=[],total=index?.total||route?.distance||0;
+    if(steps.length){
+      const starts=buildRouteStepDistances(steps,total);
+      for(let i=0;i<steps.length;i++){
+        const start=starts[i],end=i+1<starts.length?starts[i+1]:total;
+        classSegments.push({start,end,kph:legalDefaultForStep(steps[i])});
+      }
+    }
+    return{route,index,segments,classSegments};
   }
   function segmentIndexAtDistance(segments,target){
     let low=0,high=segments.length-1;
@@ -840,6 +864,14 @@ const SpeedLimitResolver=(()=>{
     if(!segment||target<segment.start||target>segment.end)return null;
     return segment.kph??null;
   }
+  function legalDefaultAt(profile,distanceMeters){
+    const segments=profile?.classSegments||[];
+    if(!segments.length)return null;
+    const target=Math.max(0,Number(distanceMeters)||0);
+    const index=segmentIndexAtDistance(segments,target),segment=segments[index];
+    if(!segment||target<segment.start||target>segment.end||!Number.isFinite(segment.kph))return null;
+    return segment.kph;
+  }
   function resolve(profile,distanceMeters){
     const segments=profile?.segments||[],target=Math.max(0,Number(distanceMeters)||0);
     if(!segments.length)return null;
@@ -851,7 +883,9 @@ const SpeedLimitResolver=(()=>{
     const behind=previous?Math.max(0,target-previous.end):Infinity,ahead=next?Math.max(0,next.start-target):Infinity,gap=previous&&next?Math.max(0,next.start-previous.end):Infinity;
     if(previous&&next&&previous.kph===next.kph&&gap<=MAX_MATCHING_GAP_M)return{kph:previous.kph,estimated:true,source:"matching-neighbors",distance:Math.min(behind,ahead)};
     const candidate=ahead<=behind?next:previous,candidateDistance=Math.min(behind,ahead);
-    return candidate&&candidateDistance<=MAX_NEARBY_LIMIT_DISTANCE_M?{kph:candidate.kph,estimated:true,source:candidate===next?"ahead":"behind",distance:candidateDistance}:null;
+    if(candidate&&candidateDistance<=MAX_NEARBY_LIMIT_DISTANCE_M)return{kph:candidate.kph,estimated:true,source:candidate===next?"ahead":"behind",distance:candidateDistance};
+    const legalDefault=legalDefaultAt(profile,target);
+    return Number.isFinite(legalDefault)?{kph:legalDefault,estimated:true,source:"legal-default",distance:0}:null;
   }
   return{normalize,buildProfile,atDistance,resolve};
 })();
@@ -1059,9 +1093,9 @@ function scheduleMapDataHydration(callback){
 function roundedCanvasRect(context,x,y,width,height,radius){const r=Math.min(radius,width/2,height/2);context.beginPath();context.moveTo(x+r,y);context.arcTo(x+width,y,x+width,y+height,r);context.arcTo(x+width,y+height,x,y+height,r);context.arcTo(x,y+height,x,y,r);context.arcTo(x,y,x+width,y,r);context.closePath()}
 function createMapPictogram(kind,color){
   const canvas=document.createElement("canvas");canvas.width=72;canvas.height=72;const context=canvas.getContext("2d");
-  context.clearRect(0,0,72,72);context.shadowColor="rgba(5,28,23,.28)";context.shadowBlur=8;context.shadowOffsetY=4;context.fillStyle=color;context.beginPath();context.arc(36,33,27,0,Math.PI*2);context.fill();context.shadowColor="transparent";context.lineWidth=4;context.strokeStyle="#fff";context.stroke();context.fillStyle="#fff";context.strokeStyle="#fff";context.lineWidth=3;context.lineCap="round";context.lineJoin="round";
-  if(kind==="camera"){roundedCanvasRect(context,20,27,28,19,5);context.fill();context.beginPath();context.moveTo(48,31);context.lineTo(57,26);context.lineTo(57,47);context.lineTo(48,42);context.closePath();context.fill();context.fillStyle=color;context.beginPath();context.arc(34,36.5,5.5,0,Math.PI*2);context.fill()}
-  else{roundedCanvasRect(context,23,17,23,37,4);context.stroke();context.beginPath();context.moveTo(28,23);context.lineTo(41,23);context.lineTo(41,32);context.lineTo(28,32);context.closePath();context.stroke();context.beginPath();context.moveTo(46,26);context.lineTo(53,32);context.lineTo(53,47);context.quadraticCurveTo(53,51,49,51);context.lineTo(46,51);context.stroke();context.beginPath();context.moveTo(27,54);context.lineTo(47,54);context.stroke()}
+  context.clearRect(0,0,72,72);context.shadowColor="rgba(5,28,23,.18)";context.shadowBlur=5;context.shadowOffsetY=2;context.fillStyle=color;context.beginPath();context.arc(36,36,26,0,Math.PI*2);context.fill();context.shadowColor="transparent";context.lineWidth=2.5;context.strokeStyle="#fff";context.stroke();context.fillStyle="#fff";context.strokeStyle="#fff";context.lineWidth=2.5;context.lineCap="round";context.lineJoin="round";
+  if(kind==="camera"){roundedCanvasRect(context,22,30,28,18,5);context.fill();roundedCanvasRect(context,31,25,10,6,2);context.fill();context.fillStyle=color;context.beginPath();context.arc(36,39,6,0,Math.PI*2);context.fill()}
+  else{roundedCanvasRect(context,24,21,17,30,3);context.fill();context.fillStyle=color;roundedCanvasRect(context,27,25,11,8,2);context.fill();context.strokeStyle="#fff";context.lineWidth=3.4;context.beginPath();context.moveTo(43,27);context.lineTo(49,32);context.lineTo(49,45);context.stroke();context.beginPath();context.moveTo(49,45);context.lineTo(44,45);context.stroke()}
   return context.getImageData(0,0,72,72)
 }
 function ensureMapPictograms(map){for(const [name,kind,color] of[["clarify-camera","camera","#0b5b4b"],["clarify-rrvv-camera","camera","#296bc1"],["clarify-fuel","fuel","#e68b09"]])if(!map.hasImage(name))map.addImage(name,createMapPictogram(kind,color),{pixelRatio:2})}
@@ -2525,30 +2559,70 @@ function routeAlignedNavigationPosition(position,located){
 
 // NAVIGATION CAMERA
 const AUTO_FOLLOW_RESUME_MS=8000;
-// Fase 1 mantiene una perspectiva estable. La transición automática 3D -> 2D
-// queda explícitamente deshabilitada hasta la fase de maniobras.
-const ManeuverCameraState=Object.freeze({CRUISING_3D:"CRUISING_3D"});
-// Estilo Google Maps/Waze: la cámara se acerca al aproximarse a un giro
-// relevante y vuelve al zoom de crucero una vez que lo tomas.
+// Estilo Google Maps/Waze: al acercarse a un giro relevante la cámara se
+// acerca (zoom) y se aplana hacia 2D para ver mejor el cruce; al superarlo
+// vuelve suavemente al zoom y al pitch de crucero (la interpolación ya la
+// hace followFrame() con PITCH_SMOOTHING_TAU_MS, acá solo entregamos el
+// pitch objetivo según la distancia a la maniobra).
+const ManeuverCameraState=Object.freeze({CRUISING_3D:"CRUISING_3D",FLATTENING:"FLATTENING"});
 const MANEUVER_ZOOM_BOOST_PROFILE=Object.freeze([[0,.9],[50,.85],[100,.5],[180,.15],[260,0]]);
+const MANEUVER_PITCH_FLATTEN_PROFILE=Object.freeze([[0,1],[70,.85],[150,.4],[260,0]]);
+// Al salir del cruce se vuelve a 3D casi de inmediato (curva corta), no con
+// la misma gradualidad de 260 m con la que te acercabas — a menos que el
+// siguiente giro importante ya esté cerca, en cuyo caso su propia curva de
+// acercamiento toma el control (ver blendedFactor, que usa el máximo).
+const MANEUVER_DEPARTURE_RELEASE_PROFILE=Object.freeze([[0,1],[20,.35],[45,0]]);
 const MANEUVER_TURN_MODIFIERS=new Set(["left","right","sharp left","sharp right","slight left","slight right","uturn"]);
-const MANEUVER_TURN_TYPES=new Set(["roundabout","rotary","roundabout turn","exit roundabout","exit rotary","fork","merge","on ramp","off ramp","end of road"]);
+const MANEUVER_TURN_TYPES=new Set(["roundabout","rotary","roundabout turn","exit roundabout","exit rotary","fork","merge","end of road"]);
 const ManeuverCameraController=(()=>{
-  const cameraState=ManeuverCameraState.CRUISING_3D;
-  let currentDistance=Infinity,currentImportant=false;
+  let currentDistance=Infinity,currentImportant=false,cameraState=ManeuverCameraState.CRUISING_3D,lastImportantManeuverDistance=null;
   function syncState(){const drive=$("#driveMode");if(drive)drive.dataset.cameraPerspective=cameraState;return cameraState}
   function isImportantStep(step){
     const type=String(step?.maneuver?.type||"").toLowerCase(),modifier=String(step?.maneuver?.modifier||"").toLowerCase();
     return MANEUVER_TURN_TYPES.has(type)||MANEUVER_TURN_MODIFIERS.has(modifier);
   }
-  function reset(){currentDistance=Infinity;currentImportant=false;return syncState()}
+  // El paso de la instrucción avanza al siguiente giro ~45 m antes del cruce
+  // (para que el texto/voz se adelanten), así que la distancia "hacia" la
+  // maniobra deja de servir justo ahí: si se usara sola, tanto el aplanado
+  // como el acercamiento de zoom caerían de golpe a los valores del giro
+  // siguiente (lejos, o cerca si vienen giros seguidos), y eso se sentía
+  // como que la cámara se acercaba y alejaba de repente en vez de moverse
+  // fluido. Por eso cada efecto combina dos curvas con el mismo perfil de
+  // distancia: approachValue() mientras te acercas al próximo giro
+  // importante, y departureValue() según cuánto llevas recorrido desde el
+  // último giro importante que tomaste (registrado por notePassedManeuver(),
+  // que se dispara en el momento exacto en que updateInstruction() detecta
+  // que una maniobra quedó atrás, antes de avanzar al siguiente paso). Se
+  // usa el máximo de ambas para que la transición sea siempre continua.
+  function approachValue(profile){return currentImportant?interpolateCameraProfile(profile,currentDistance):0}
+  function departureValue(){
+    if(!Number.isFinite(lastImportantManeuverDistance))return 0;
+    // El "reached" que dispara notePassedManeuver() usa distancia en línea
+    // recta (45 m), así que puede marcarse un poco antes de que el progreso
+    // sobre la ruta alcance esa misma distancia. Sin el clamp a 0 quedaba un
+    // instante justo en el cruce donde "since" era negativo y este factor
+    // caía a 0 antes de tiempo, dejando un hueco sin aplanar ni acercar la
+    // cámara exactamente en la maniobra.
+    const since=Math.max(0,state.currentRouteProgressDistance-lastImportantManeuverDistance);
+    return interpolateCameraProfile(MANEUVER_DEPARTURE_RELEASE_PROFILE,since);
+  }
+  function blendedFactor(approachProfile){return Math.max(approachValue(approachProfile),departureValue())}
+  function flattenFactor(){return blendedFactor(MANEUVER_PITCH_FLATTEN_PROFILE)}
+  function reset(){currentDistance=Infinity;currentImportant=false;lastImportantManeuverDistance=null;cameraState=ManeuverCameraState.CRUISING_3D;return syncState()}
+  function notePassedManeuver(step,maneuverDistance){
+    if(isImportantStep(step)&&Number.isFinite(maneuverDistance))lastImportantManeuverDistance=maneuverDistance;
+  }
   function update({step,distance}={}){
     if(step!==undefined){currentDistance=Number.isFinite(distance)?distance:Infinity;currentImportant=isImportantStep(step)}
+    cameraState=flattenFactor()>.05?ManeuverCameraState.FLATTENING:ManeuverCameraState.CRUISING_3D;
     return syncState();
   }
-  function zoomBoost(){return currentImportant?interpolateCameraProfile(MANEUVER_ZOOM_BOOST_PROFILE,currentDistance):0}
-  function profile(baseZoom){return{pitch:navigationPitch(),zoom:Math.min(NAVIGATION_CAMERA_CONFIG.ZOOM_MAX+1,baseZoom+zoomBoost()),automatic:false,state:cameraState}}
-  return{reset,update,profile,isImportantManeuver:()=>currentImportant,getState:()=>cameraState,getConfig:()=>Object.freeze({automatic2d:false})};
+  function zoomBoost(){return blendedFactor(MANEUVER_ZOOM_BOOST_PROFILE)}
+  function profile(baseZoom){
+    const cruisingPitch=navigationPitch(),factor=cruisingPitch>0?flattenFactor():0,pitch=cruisingPitch-cruisingPitch*factor;
+    return{pitch,zoom:Math.min(NAVIGATION_CAMERA_CONFIG.ZOOM_MAX+1,baseZoom+zoomBoost()),automatic:factor>0,state:cameraState};
+  }
+  return{reset,update,notePassedManeuver,profile,isImportantManeuver:()=>currentImportant,getState:()=>cameraState,getConfig:()=>Object.freeze({automatic2d:true})};
 })();
 const NavigationCameraController=(()=>{
   let lastFrameAt=0,lastZoom=null,lastPitch=null,currentBearing=null,targetBearing=null,rotationFrozen=false,resumeTimer=null,recenterTimer=null,queuedFollowTimer=null,lastDebugAt=0,lastDeadband=false,lastPoint=null,lastPosition=null,dimensionAnimation=null,dimensionAnimationTimer=null,dimensionAnimationId=0;
@@ -3690,7 +3764,7 @@ function updateInstruction(p){
     const m=current?.maneuver?.location;
     if(!m){state.currentStepIndex++;continue}
     const d=haversine(p,m),maneuverDistance=maneuverRouteDistance(current);
-    if(shouldAdvanceManeuver(d,maneuverDistance,state.currentRouteProgressDistance)){state.currentStepIndex++;continue}
+    if(shouldAdvanceManeuver(d,maneuverDistance,state.currentRouteProgressDistance)){ManeuverCameraController.notePassedManeuver(current,maneuverDistance);state.currentStepIndex++;continue}
     break;
   }
 
