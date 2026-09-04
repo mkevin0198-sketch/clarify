@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - 'android-app/**'
+      - 'public/**'
       - '.github/workflows/build-apk.yml'
 
 jobs:
