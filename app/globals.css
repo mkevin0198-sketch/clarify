@@ -1,0 +1,30 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+body {
+  background: #f6f7f1;
+}
+
+.prototype-shell,
+.prototype-frame {
+  border: 0;
+  height: 100dvh;
+  width: 100%;
+}
+
+.prototype-frame {
+  display: block;
+}
