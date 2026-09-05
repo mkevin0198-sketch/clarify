@@ -35,6 +35,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.ValueCallback;
 import android.widget.Toast;
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -43,14 +44,24 @@ import androidx.core.content.ContextCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.FileProvider;
 import androidx.webkit.WebViewAssetLoader;
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.tasks.Task;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -73,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
     private boolean navigationTtsReady;
     private ValueCallback<Uri[]> fileChooserCallback;
     private Uri pendingCameraUri;
+    private static final String DRIVE_BACKUP_FILE_NAME = "clarify-backup.json";
+    private static final String DRIVE_SCOPE_URL = "https://www.googleapis.com/auth/drive.appdata";
+    private GoogleSignInClient googleSignInClient;
+    private final ActivityResultLauncher<Intent> driveSignInLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), this::handleDriveSignInResult);
     private final ActivityResultLauncher<String[]> permissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
         sendBluetoothStatus("");
     });
@@ -94,9 +109,154 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(state);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         configureNavigationVoice();
+        configureDriveSignIn();
         configureWebView();
         requestInitialPermissions();
         handleIntent(getIntent());
+    }
+
+    private void configureDriveSignIn() {
+        GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestScopes(new Scope(DRIVE_SCOPE_URL))
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(this, options);
+    }
+
+    private void handleDriveSignInResult(ActivityResult result) {
+        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+        try {
+            GoogleSignInAccount account = task.getResult(ApiException.class);
+            notifyDriveStatus(true, account.getEmail(), null);
+        } catch (ApiException error) {
+            notifyDriveStatus(false, null, "No se pudo conectar (código " + error.getStatusCode() + ")");
+        }
+    }
+
+    private boolean isDriveSignedInInternal() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        return account != null && GoogleSignIn.hasPermissions(account, new Scope(DRIVE_SCOPE_URL));
+    }
+
+    private void notifyDriveStatus(boolean signedIn, String email, String error) {
+        if (!pageReady) return;
+        try {
+            JSONObject payload = new JSONObject()
+                    .put("signedIn", signedIn)
+                    .put("email", email == null ? JSONObject.NULL : email)
+                    .put("error", error == null ? JSONObject.NULL : error);
+            webView.post(() -> webView.evaluateJavascript("window.ClarifyNativeDriveStatus&&window.ClarifyNativeDriveStatus(" + JSONObject.quote(payload.toString()) + ")", null));
+        } catch (Exception ignored) { }
+    }
+
+    private void notifyDriveBackupResult(boolean success, String error) {
+        if (!pageReady) return;
+        try {
+            JSONObject payload = new JSONObject()
+                    .put("success", success)
+                    .put("error", error == null ? JSONObject.NULL : error)
+                    .put("at", System.currentTimeMillis());
+            webView.post(() -> webView.evaluateJavascript("window.ClarifyNativeDriveBackupResult&&window.ClarifyNativeDriveBackupResult(" + JSONObject.quote(payload.toString()) + ")", null));
+        } catch (Exception ignored) { }
+    }
+
+    private void notifyDriveRestoreResult(String jsonContent, String error) {
+        if (!pageReady) return;
+        try {
+            JSONObject payload = new JSONObject()
+                    .put("data", jsonContent == null ? JSONObject.NULL : jsonContent)
+                    .put("error", error == null ? JSONObject.NULL : error);
+            webView.post(() -> webView.evaluateJavascript("window.ClarifyNativeDriveRestoreResult&&window.ClarifyNativeDriveRestoreResult(" + JSONObject.quote(payload.toString()) + ")", null));
+        } catch (Exception ignored) { }
+    }
+
+    private String getDriveAccessToken() throws Exception {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account == null || account.getAccount() == null) return null;
+        return GoogleAuthUtil.getToken(this, account.getAccount(), "oauth2:" + DRIVE_SCOPE_URL);
+    }
+
+    private HttpURLConnection openDriveConnection(String url, String token, String method) throws Exception {
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestMethod(method);
+        connection.setConnectTimeout(15000);
+        connection.setReadTimeout(20000);
+        connection.setRequestProperty("Authorization", "Bearer " + token);
+        return connection;
+    }
+
+    private String readConnectionBody(HttpURLConnection connection) throws Exception {
+        int code = connection.getResponseCode();
+        if (code < 200 || code >= 300) throw new IllegalStateException("HTTP " + code);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
+        StringBuilder body = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) body.append(line);
+        return body.toString();
+    }
+
+    private String findDriveBackupFileId(String token) throws Exception {
+        String query = URLEncoder.encode("name='" + DRIVE_BACKUP_FILE_NAME + "' and trashed=false", "UTF-8");
+        String url = "https://www.googleapis.com/drive/v3/files?spaces=appDataFolder&fields=" + URLEncoder.encode("files(id,name)", "UTF-8") + "&q=" + query;
+        HttpURLConnection connection = openDriveConnection(url, token, "GET");
+        JSONObject response = new JSONObject(readConnectionBody(connection));
+        connection.disconnect();
+        JSONArray files = response.optJSONArray("files");
+        if (files != null && files.length() > 0) return files.getJSONObject(0).optString("id", null);
+        return null;
+    }
+
+    private void createDriveBackupFile(String token, String jsonData) throws Exception {
+        String boundary = "clarify-" + System.currentTimeMillis();
+        JSONObject metadata = new JSONObject().put("name", DRIVE_BACKUP_FILE_NAME).put("parents", new JSONArray().put("appDataFolder"));
+        String body = "--" + boundary + "\r\n"
+                + "Content-Type: application/json; charset=UTF-8\r\n\r\n" + metadata + "\r\n"
+                + "--" + boundary + "\r\n"
+                + "Content-Type: application/json; charset=UTF-8\r\n\r\n" + jsonData + "\r\n"
+                + "--" + boundary + "--";
+        HttpURLConnection connection = openDriveConnection("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", token, "POST");
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "multipart/related; boundary=" + boundary);
+        try (OutputStream out = connection.getOutputStream()) { out.write(body.getBytes(StandardCharsets.UTF_8)); }
+        readConnectionBody(connection);
+        connection.disconnect();
+    }
+
+    private void updateDriveBackupFile(String token, String fileId, String jsonData) throws Exception {
+        HttpURLConnection connection = openDriveConnection("https://www.googleapis.com/upload/drive/v3/files/" + fileId + "?uploadType=media", token, "PATCH");
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+        try (OutputStream out = connection.getOutputStream()) { out.write(jsonData.getBytes(StandardCharsets.UTF_8)); }
+        readConnectionBody(connection);
+        connection.disconnect();
+    }
+
+    private void performDriveBackup(String jsonData) {
+        try {
+            String token = getDriveAccessToken();
+            if (token == null) { notifyDriveBackupResult(false, "Sin sesión de Google"); return; }
+            String fileId = findDriveBackupFileId(token);
+            if (fileId == null) createDriveBackupFile(token, jsonData);
+            else updateDriveBackupFile(token, fileId, jsonData);
+            notifyDriveBackupResult(true, null);
+        } catch (Exception error) {
+            notifyDriveBackupResult(false, error.getMessage());
+        }
+    }
+
+    private void performDriveRestore() {
+        try {
+            String token = getDriveAccessToken();
+            if (token == null) { notifyDriveRestoreResult(null, "Sin sesión de Google"); return; }
+            String fileId = findDriveBackupFileId(token);
+            if (fileId == null) { notifyDriveRestoreResult(null, null); return; }
+            HttpURLConnection connection = openDriveConnection("https://www.googleapis.com/drive/v3/files/" + fileId + "?alt=media", token, "GET");
+            String content = readConnectionBody(connection);
+            connection.disconnect();
+            notifyDriveRestoreResult(content, null);
+        } catch (Exception error) {
+            notifyDriveRestoreResult(null, error.getMessage());
+        }
     }
 
     private void configureNavigationVoice() {
@@ -171,6 +331,7 @@ public class MainActivity extends AppCompatActivity {
             @Override public void onPageFinished(WebView view, String url) {
                 pageReady = true;
                 sendBluetoothStatus("");
+                notifyDriveStatus(isDriveSignedInInternal(), null, null);
                 if (pendingAutoFinish || BluetoothPrefs.consumePendingFinish(MainActivity.this)) finishBluetoothTrip();
                 else if (pendingAutoStart || BluetoothPrefs.consumePendingStart(MainActivity.this)) startFreeDrive();
             }
@@ -343,6 +504,11 @@ public class MainActivity extends AppCompatActivity {
         @JavascriptInterface public boolean speakNavigation(String text, String utteranceId) { return speakNavigationInternal(text, utteranceId); }
         @JavascriptInterface public void stopNavigationSpeech() { runOnUiThread(MainActivity.this::stopNavigationSpeechInternal); }
         @JavascriptInterface public boolean isNavigationSpeechAvailable() { return navigationTtsReady; }
+        @JavascriptInterface public void driveSignIn() { runOnUiThread(() -> driveSignInLauncher.launch(googleSignInClient.getSignInIntent())); }
+        @JavascriptInterface public boolean isDriveSignedIn() { return isDriveSignedInInternal(); }
+        @JavascriptInterface public void driveSignOut() { runOnUiThread(() -> googleSignInClient.signOut().addOnCompleteListener(task -> notifyDriveStatus(false, null, null))); }
+        @JavascriptInterface public void driveBackup(String jsonData) { new Thread(() -> performDriveBackup(jsonData)).start(); }
+        @JavascriptInterface public void driveRestore() { new Thread(MainActivity.this::performDriveRestore).start(); }
     }
 
     private void showNativeNotificationInternal(String title, String body, String tag) {

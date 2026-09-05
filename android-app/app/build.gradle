@@ -38,4 +38,5 @@ dependencies {
     implementation 'androidx.webkit:webkit:1.13.0'
     implementation 'androidx.car.app:app:1.7.0'
     implementation 'androidx.car.app:app-projected:1.7.0'
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
 }

@@ -492,7 +492,7 @@ function isPerformanceConstrained(){
 function getConfig(){return{vehicleName:localStorage.getItem("ruta.vehicleName")||"Mi vehículo",plate:localStorage.getItem("ruta.plate")||"ABCD-12",fuelType:localStorage.getItem("ruta.fuelType")||"Gasolina",efficiency:Number(localStorage.getItem("ruta.efficiency")||13),fuelPrice:Number(localStorage.getItem("ruta.fuelPrice")||1300),tollCategory:localStorage.getItem("ruta.tollCategory")||"1"}}
 function mountVehicleFeatures(){
   if($("#featureSettingsCard"))return;
-  $("#vehicleReadCard")?.insertAdjacentHTML("afterend",`<article class="feature-settings-card" id="featureSettingsCard" aria-labelledby="featureSettingsTitle"><h2 class="feature-settings-title" id="featureSettingsTitle">Funciones</h2><button class="feature-setting-row" id="notificationToggle" type="button" aria-pressed="false"><span class="feature-setting-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22a2.4 2.4 0 0 0 2.26-1.6H9.74A2.4 2.4 0 0 0 12 22Zm7-5.2V11a7 7 0 0 0-5.2-6.76V3a1.8 1.8 0 0 0-3.6 0v1.24A7 7 0 0 0 5 11v5.8L3.2 18.6V20h17.6v-1.4L19 16.8ZM7 18l1-1V11a4 4 0 0 1 8 0v6l1 1H7Z"/></svg></span><span class="feature-setting-copy"><strong>Notificaciones</strong><small id="notificationStatus">Alertas de peajes y viajes desactivadas</small></span><span class="feature-switch" aria-hidden="true"></span></button><button class="feature-setting-row" id="bluetoothToggle" type="button" aria-pressed="false"><span class="feature-setting-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 6 5-4.5 5L18 17l-6 5v-7.7L8.4 18 7 16.6l4.6-4.6L7 7.4 8.4 6l3.6 3.7V2Zm2 4.3v3.4L16 7l-2-1.7Zm0 8v3.4l2-1.7-2-1.7Z"/></svg></span><span class="feature-setting-copy"><strong>Auto inicio por Bluetooth</strong><small id="bluetoothStatus">Sin dispositivo vinculado</small></span><span class="feature-switch" aria-hidden="true"></span></button><div class="bluetooth-actions"><button class="btn primary" id="bluetoothLink" type="button">Configurar Auto</button><button class="btn hidden" id="bluetoothForget" type="button">Desvincular todos</button></div><p class="bluetooth-note" id="bluetoothNote">Selecciona uno o más Bluetooth del vehículo. Clarify iniciará al detectar cualquiera y guardará el viaje cuando todos lleven más de 30 segundos desconectados.</p></article>`);
+  $("#vehicleReadCard")?.insertAdjacentHTML("afterend",`<article class="feature-settings-card" id="featureSettingsCard" aria-labelledby="featureSettingsTitle"><h2 class="feature-settings-title" id="featureSettingsTitle">Funciones</h2><button class="feature-setting-row" id="notificationToggle" type="button" aria-pressed="false"><span class="feature-setting-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22a2.4 2.4 0 0 0 2.26-1.6H9.74A2.4 2.4 0 0 0 12 22Zm7-5.2V11a7 7 0 0 0-5.2-6.76V3a1.8 1.8 0 0 0-3.6 0v1.24A7 7 0 0 0 5 11v5.8L3.2 18.6V20h17.6v-1.4L19 16.8ZM7 18l1-1V11a4 4 0 0 1 8 0v6l1 1H7Z"/></svg></span><span class="feature-setting-copy"><strong>Notificaciones</strong><small id="notificationStatus">Alertas de peajes y viajes desactivadas</small></span><span class="feature-switch" aria-hidden="true"></span></button><button class="feature-setting-row" id="bluetoothToggle" type="button" aria-pressed="false"><span class="feature-setting-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 6 5-4.5 5L18 17l-6 5v-7.7L8.4 18 7 16.6l4.6-4.6L7 7.4 8.4 6l3.6 3.7V2Zm2 4.3v3.4L16 7l-2-1.7Zm0 8v3.4l2-1.7-2-1.7Z"/></svg></span><span class="feature-setting-copy"><strong>Auto inicio por Bluetooth</strong><small id="bluetoothStatus">Sin dispositivo vinculado</small></span><span class="feature-switch" aria-hidden="true"></span></button><div class="bluetooth-actions"><button class="btn primary" id="bluetoothLink" type="button">Configurar Auto</button><button class="btn hidden" id="bluetoothForget" type="button">Desvincular todos</button></div><p class="bluetooth-note" id="bluetoothNote">Selecciona uno o más Bluetooth del vehículo. Clarify iniciará al detectar cualquiera y guardará el viaje cuando todos lleven más de 30 segundos desconectados.</p><button class="feature-setting-row" id="driveBackupRow" type="button" aria-pressed="false"><span class="feature-setting-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 18a5 5 0 0 1-1-9.9 6 6 0 0 1 11.6-1.7A4.5 4.5 0 0 1 17.5 15v.02A5 5 0 0 1 7 18Zm5-8-3.5 3.5H11V16h2v-2.5h2.5L12 10Z"/></svg></span><span class="feature-setting-copy"><strong>Copia de seguridad en Google Drive</strong><small id="driveBackupStatus">No disponible</small></span><span class="feature-switch" aria-hidden="true"></span></button><div class="bluetooth-actions"><button class="btn primary" id="driveBackupConnect" type="button">Conectar con Google Drive</button></div><p class="bluetooth-note">Guarda automáticamente tus viajes, gastos y preferencias en un espacio privado de tu Google Drive (solo Clarify puede verlo) para que no se pierdan si cambias de teléfono.</p></article>`);
 }
 const NotificationManager=(()=>{
   const ENABLED_KEY="clarify.notifications.enabled.v1";
@@ -618,6 +618,84 @@ window.ClarifyNativeBluetoothAutoFinish=()=>{
   toast("Bluetooth del auto desconectado durante 30 segundos · guardando viaje");
   void finishTrip({saveTrip:true});
 };
+// Respaldo automático en Google Drive: sube un snapshot de las claves de
+// localStorage listadas abajo (viajes, gastos, preferencias) a la carpeta
+// oculta de la app en Drive (appDataFolder) cada vez que cambian, y las
+// restaura al iniciar sesión. Se excluyen a propósito: el token de Mapbox
+// (es una credencial, no un dato del usuario), el viaje activo en curso
+// (retomarlo en otro momento/dispositivo no tendría sentido) y las banderas
+// internas de migración/rendimiento (se recalculan solas por dispositivo).
+const DriveBackupManager=(()=>{
+  const BACKUP_KEYS=["ruta.trips","ruta.fuelEntries","ruta.efficiency","ruta.fuelPrice","ruta.fuelType","ruta.plate","ruta.tollCategory","ruta.vehicleName","ruta.mapProvider","ruta.mapLayerPrefs","ruta.mapViewPrefs","ruta.mapLightOverride","ruta.searchHistory","clarify.notifications.enabled.v1","clarify.bluetoothAutoStart.enabled.v1","clarify.bluetoothAutoStart.deviceId.v1","clarify.bluetoothAutoStart.deviceName.v1"];
+  const DEBOUNCE_MS=4000;
+  let debounceTimer=null,signedIn=false,email="",lastSyncAt=null,lastError=null,applyingRemote=false,patched=false;
+  function nativeBridge(){return window.ClarifyAndroid||null}
+  function available(){return!!nativeBridge()?.driveBackup}
+  function collectSnapshot(){
+    const data={};
+    for(const key of BACKUP_KEYS){const value=localStorage.getItem(key);if(value!==null)data[key]=value}
+    return{version:1,savedAt:Date.now(),data};
+  }
+  function applySnapshot(snapshot){
+    if(!snapshot||typeof snapshot.data!=="object")return false;
+    applyingRemote=true;
+    try{for(const[key,value]of Object.entries(snapshot.data))if(BACKUP_KEYS.includes(key)&&typeof value==="string")localStorage.setItem(key,value)}
+    finally{applyingRemote=false}
+    return true;
+  }
+  function patchStorage(){
+    if(patched)return;patched=true;
+    const originalSetItem=localStorage.setItem.bind(localStorage);
+    localStorage.setItem=(key,value)=>{originalSetItem(key,value);if(BACKUP_KEYS.includes(key))scheduleBackup()};
+  }
+  function scheduleBackup(){
+    if(!available()||!signedIn||applyingRemote)return;
+    clearTimeout(debounceTimer);
+    debounceTimer=setTimeout(backupNow,DEBOUNCE_MS);
+  }
+  function backupNow(){if(available())try{nativeBridge().driveBackup(JSON.stringify(collectSnapshot()))}catch{}}
+  function restoreNow(){if(available())try{nativeBridge().driveRestore()}catch{}}
+  function signIn(){if(available())try{nativeBridge().driveSignIn()}catch{}}
+  function signOut(){if(available())try{nativeBridge().driveSignOut()}catch{}}
+  function render(){
+    const row=$("#driveBackupRow"),status=$("#driveBackupStatus"),button=$("#driveBackupConnect");
+    if(!row)return;
+    row.setAttribute("aria-pressed",String(signedIn));
+    if(status)status.textContent=!available()?"Disponible al instalar Clarify en Android":lastError?`Sin conexión · ${lastError}`:!signedIn?"No conectado":lastSyncAt?`Última copia: ${new Date(lastSyncAt).toLocaleString("es-CL",{dateStyle:"short",timeStyle:"short"})}`:"Conectado · preparando copia…";
+    if(button){button.textContent=signedIn?"Desconectar Google Drive":"Conectar con Google Drive";button.disabled=!available()}
+  }
+  function onStatus(json){
+    try{const payload=typeof json==="string"?JSON.parse(json):json;signedIn=!!payload.signedIn;email=payload.email||"";lastError=payload.error||null;}catch{return}
+    render();
+    if(signedIn)restoreNow();
+  }
+  function onBackupResult(json){
+    try{const payload=typeof json==="string"?JSON.parse(json):json;lastError=payload.error||null;if(!payload.error)lastSyncAt=payload.at||Date.now();}catch{}
+    render();
+  }
+  function onRestoreResult(json){
+    try{
+      const payload=typeof json==="string"?JSON.parse(json):json;
+      if(payload.error){lastError=payload.error;render();return}
+      if(payload.data){
+        const snapshot=JSON.parse(payload.data);
+        if(applySnapshot(snapshot)){toast("Copia de Google Drive restaurada");setTimeout(()=>location.reload(),1200)}
+      }
+      lastError=null;render();
+    }catch(error){lastError=String(error?.message||error);render()}
+  }
+  function init(){
+    if(!available())return render();
+    patchStorage();
+    try{signedIn=!!nativeBridge().isDriveSignedIn()}catch{signedIn=false}
+    render();
+    if(signedIn)restoreNow();
+  }
+  return{init,signIn,signOut,backupNow,restoreNow,onStatus,onBackupResult,onRestoreResult,getState:()=>({available:available(),signedIn,email,lastSyncAt,lastError})};
+})();
+window.ClarifyNativeDriveStatus=json=>DriveBackupManager.onStatus(json);
+window.ClarifyNativeDriveBackupResult=json=>DriveBackupManager.onBackupResult(json);
+window.ClarifyNativeDriveRestoreResult=json=>DriveBackupManager.onRestoreResult(json);
 function migrateLegacyPersonalData(){
   if(localStorage.getItem("ruta.v31Migration")==="done")return;
   try{
@@ -3997,6 +4075,7 @@ window.visualViewport?.addEventListener("resize",()=>requestAnimationFrame(syncM
 mountVehicleFeatures();
 NotificationManager.init();
 BluetoothAutoStartManager.init();
+DriveBackupManager.init();
 $$('.nav button').forEach(button=>button.addEventListener("click",()=>showView(button.dataset.view)));
 $$(".mobile-app-header [data-view]").forEach(button=>button.addEventListener("click",()=>showView(button.dataset.view)));
 $$("[data-bottom-view]").forEach(button=>button.addEventListener("click",()=>showView(button.dataset.bottomView)));
@@ -4099,6 +4178,7 @@ bindElementEvent("#saveCosts","click",saveCosts);
 bindElementEvent("#notificationToggle","click",()=>void NotificationManager.toggle());
 bindElementEvent("#bluetoothToggle","click",()=>void BluetoothAutoStartManager.toggle());
 bindElementEvent("#bluetoothLink","click",()=>void BluetoothAutoStartManager.linkDevice());
+bindElementEvent("#driveBackupConnect","click",()=>{DriveBackupManager.getState().signedIn?DriveBackupManager.signOut():DriveBackupManager.signIn()});
 bindElementEvent("#bluetoothForget","click",()=>void BluetoothAutoStartManager.forget());
 bindElementEvent("#editVehicle","click",openVehicleEditor);
 bindElementEvent("#cancelVehicleEdit","click",closeVehicleEditor);
